@@ -1,9 +1,6 @@
 {
     "name": "endelwar/twig-extensions",
     "description": "Twig extensions used by me in my projects",
-    "require": {
-        "gregwar/image": "dev-master"
-    },
     "license": "MIT",
     "authors": [
         {
@@ -11,5 +8,12 @@
             "email": "endelwar@aregar.it"
         }
     ],
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "require": {
+        "twig/twig": "1.14.*@dev",
+        "gregwar/image": "dev-master"
+    },
+    "autoload": {
+        "psr-0": { "Twig_Extensions_": "src/" }
+    },
 }
