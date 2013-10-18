@@ -2,6 +2,7 @@
     "name": "endelwar/twig-extensions",
     "description": "Twig extensions used by me in my projects",
     "license": "MIT",
+    "homepage": "http://github.com/endelwar/twig-extensions#twigextensions",
     "authors": [
         {
             "name": "Manuel Dalla Lana",
@@ -14,6 +15,8 @@
         "gregwar/image": "dev-master"
     },
     "autoload": {
-        "psr-0": { "Twig_Extensions_": "src/" }
+        "psr-0": {
+            "Endelwar\\Twig": "src/"
+        }
     }
 }
