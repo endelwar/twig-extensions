@@ -1,0 +1,15 @@
+{
+    "name": "endelwar/twig-extensions",
+    "description": "Twig extensions used by me in my projects",
+    "require": {
+        "gregwar/image": "dev-master"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Manuel Dalla Lana",
+            "email": "endelwar@aregar.it"
+        }
+    ],
+    "minimum-stability": "stable"
+}
