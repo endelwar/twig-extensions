@@ -11,10 +11,10 @@ namespace Endelwar\Twig;
  * @link    https://github.com/endelwar/twig-extensions
  *
  */
-class ImageExtension extends Twig_Extension
+class ImageExtension extends \Twig_Extension
 {
-
     private $_cache_dir;
+    private $_public_dir;
 
     /**
      * {@inheritdoc}
@@ -30,10 +30,12 @@ class ImageExtension extends Twig_Extension
      * Constructor
      * Inject path to cache directory
      *
+     * @param string $public_dir public directory
      * @param string $cache_dir cache directory
      */
-    public function __construct($cache_dir)
+    public function __construct($public_dir, $cache_dir = '')
     {
+        $this->_public_dir = $public_dir;
         $this->_cache_dir = $cache_dir;
     }
 
@@ -53,19 +55,19 @@ class ImageExtension extends Twig_Extension
     /**
      * Open a cached image
      *
-     * @param string $path image path
+     * @param string $file the image path
      *
      * @return object
      */
-    public function image($path)
+    public function image($file)
     {
-        return $this->_open($path);
+        return $this->_open($file);
     }
 
     /**
      * Create a new image
      *
-     * @param int $width  image width
+     * @param int $width image width
      * @param int $height image height
      *
      * @return object
@@ -104,32 +106,25 @@ class ImageExtension extends Twig_Extension
      * Creates an instance defining the cache directory
      *
      * @param string $file file to be handled
-     * @param int    $w    image width
-     * @param int    $h    imege height
+     * @param int $w image width
+     * @param int $h imege height
      *
      * @return ImageHandler
      */
     private function _createInstance($file, $w = null, $h = null)
     {
-        //$asset = $this->container->get('templating.helper.assets');
-        //$full_file_path = '../../..' . $file;
-        $full_file_path = substr($file, 1);
-        //echo $full_file_path;
-
+        $full_file_path = $this->_public_dir . $file;
         $image = new ImageHandler($full_file_path, $w, $h);
 
         $image->setCacheDir($this->_cache_dir);
 
         $image->setFileCallback(
             function ($full_file_path) {
-                $site_path = dirname($_SERVER['SCRIPT_FILENAME']);
-                $relative_file_path = str_replace($site_path, '', $full_file_path);
-                $relative_file_path = str_replace('/vendor/endelwar/twig-extensions/../../..', '', $relative_file_path);
+                $relative_file_path = str_replace($this->_public_dir, '', $full_file_path);
                 return $relative_file_path;
             }
         );
 
         return $image;
     }
-
 }
