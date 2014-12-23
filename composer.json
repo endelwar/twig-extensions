@@ -11,8 +11,8 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "twig/twig": "1.15.*@dev",
-        "gregwar/image": "dev-master"
+        "twig/twig": "1.16.*",
+        "gregwar/image": "2.0.*"
     },
     "autoload": {
         "psr-0": {
