@@ -11,7 +11,7 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "twig/twig": "1.16.*",
+        "twig/twig": "1.18.*",
         "gregwar/image": "2.0.*"
     },
     "autoload": {
