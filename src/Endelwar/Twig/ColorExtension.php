@@ -47,7 +47,7 @@ class ColorExtension extends \Twig_Extension
         $rgb = "#";
         for ($i = 0; $i < 3; $i++) {
             $c = base_convert(substr($hex, $i * 2, 2), 16, 10);
-            $c = base_convert((round(min(max(0, floatval($c + ($c * $lum))),255))), 10, 16);
+            $c = base_convert((round(min(max(0, floatval($c + ($c * $lum))), 255))), 10, 16);
             $rgb .= substr('00' . $c, strlen($c));
         }
 
