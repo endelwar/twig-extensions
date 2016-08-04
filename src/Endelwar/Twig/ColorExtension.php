@@ -31,7 +31,11 @@ class ColorExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'ColorLuminance' => new \Twig_Function_Method($this, 'ColorLuminance', array('is_safe' => array('html'))),
+            'ColorLuminance' => new \Twig_SimpleFunction(
+                'ColorLuminance',
+                array($this, 'ColorLuminance'),
+                array('is_safe' => array('html'))
+            ),
         );
     }
 
