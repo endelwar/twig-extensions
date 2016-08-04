@@ -47,8 +47,16 @@ class ImageExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'image' => new \Twig_Function_Method($this, 'image', array('is_safe' => array('html'))),
-            'new_image' => new \Twig_Function_Method($this, 'newImage', array('is_safe' => array('html')))
+            'image' => new \Twig_SimpleFunction(
+                'image',
+                array($this, 'image'),
+                array('is_safe' => array('html'))
+            ),
+            'new_image' => new \Twig_SimpleFunction(
+                'new_image',
+                array($this, 'newImage'),
+                array('is_safe' => array('html'))
+            )
         );
     }
 
@@ -121,6 +129,7 @@ class ImageExtension extends \Twig_Extension
         $image->setFileCallback(
             function ($full_file_path) {
                 $relative_file_path = str_replace($this->_public_dir, '', $full_file_path);
+
                 return $relative_file_path;
             }
         );
