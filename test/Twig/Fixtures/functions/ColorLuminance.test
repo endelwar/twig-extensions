@@ -1,0 +1,12 @@
+--TEST--
+"ColorLuminance" function
+--TEMPLATE--
+{{ ColorLuminance('#999999', 0.1) }}
+{{ ColorLuminance('#999999', -0.1) }}
+{{ ColorLuminance('#999999', 0.42) }}
+--DATA--
+return array()
+--EXPECT--
+#a8a8a8
+#8a8a8a
+#d9d9d9
