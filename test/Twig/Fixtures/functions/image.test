@@ -1,0 +1,8 @@
+--TEST--
+"image" function
+--TEMPLATE--
+{{ image('/image.png').sepia() }}
+--DATA--
+return array()
+--EXPECT--
+cache/6/c/d/d/d/6cddd740413a328bc47c8f4262233e08e65979e2.png
