@@ -9,22 +9,11 @@ namespace Endelwar\Twig;
  * @author  Manuel Dalla Lana <endelwar@aregar.it>
  * @license MIT http://opensource.org/licenses/MIT
  * @link    https://github.com/endelwar/twig-extensions
- *
  */
 class ImageExtension extends \Twig_Extension
 {
     private $_cache_dir;
     private $_public_dir;
-
-    /**
-     * {@inheritdoc}
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return 'image';
-    }
 
     /**
      * Constructor
@@ -46,18 +35,18 @@ class ImageExtension extends \Twig_Extension
      */
     public function getFunctions()
     {
-        return array(
+        return [
             'image' => new \Twig_SimpleFunction(
                 'image',
-                array($this, 'image'),
-                array('is_safe' => array('html'))
+                [$this, 'image'],
+                ['is_safe' => ['html']]
             ),
             'new_image' => new \Twig_SimpleFunction(
                 'new_image',
-                array($this, 'newImage'),
-                array('is_safe' => array('html'))
-            )
-        );
+                [$this, 'newImage'],
+                ['is_safe' => ['html']]
+            ),
+        ];
     }
 
     /**
@@ -114,8 +103,8 @@ class ImageExtension extends \Twig_Extension
      * Creates an instance defining the cache directory
      *
      * @param string $file file to be handled
-     * @param int $w image width
-     * @param int $h imege height
+     * @param null|int $w image width
+     * @param null|int $h image height
      *
      * @return ImageHandler
      */
@@ -128,9 +117,7 @@ class ImageExtension extends \Twig_Extension
 
         $image->setFileCallback(
             function ($full_file_path) {
-                $relative_file_path = str_replace($this->_public_dir, '', $full_file_path);
-
-                return $relative_file_path;
+                return str_replace($this->_public_dir, '', $full_file_path);
             }
         );
 

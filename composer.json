@@ -1,22 +1,27 @@
 {
-    "name": "endelwar/twig-extensions",
-    "description": "Twig extensions used by me in my projects",
-    "license": "MIT",
-    "homepage": "http://github.com/endelwar/twig-extensions#twigextensions",
-    "authors": [
-        {
-            "name": "Manuel Dalla Lana",
-            "email": "endelwar@aregar.it"
-        }
-    ],
-    "minimum-stability": "stable",
-    "require": {
-        "twig/twig": "~1.22",
-        "gregwar/image": "2.0.*"
-    },
-    "autoload": {
-        "psr-0": {
-            "Endelwar\\Twig": "src/"
-        }
+  "name": "endelwar/twig-extensions",
+  "description": "Some helpful Twig extensions",
+  "license": "MIT",
+  "homepage": "https://github.com/endelwar/twig-extensions#twigextensions",
+  "authors": [
+    {
+      "name": "Manuel Dalla Lana",
+      "email": "endelwar@aregar.it"
     }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "php": "^5.6|^7",
+    "twig/twig": "^1.35|^2.5",
+    "gregwar/image": "^2.0",
+    "ext-mbstring": "*"
+  },
+  "require-dev": {
+    "symfony/phpunit-bridge": "^3.4|^4.0|^4.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Endelwar\\Twig\\": "src/Endelwar/Twig"
+    }
+  }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace Endelwar\Twig;
 
 use Gregwar\Image\Image;
@@ -10,14 +11,18 @@ use Gregwar\Image\Image;
  * @author  Manuel Dalla Lana <endelwar@aregar.it>
  * @license MIT http://opensource.org/licenses/MIT
  * @link    https://github.com/endelwar/twig-extensions
- *
  */
 class ImageHandler extends Image
 {
-    protected $fileCallback = null;
+    /**
+     * @var callable
+     */
+    protected $fileCallback;
 
     /**
      * Defines the callback to call to compute the new filename
+     *
+     * @param callable $file
      */
     public function setFileCallback($file)
     {
@@ -25,16 +30,26 @@ class ImageHandler extends Image
     }
 
     /**
+     * @return callable
+     */
+    public function getFileCallback()
+    {
+        return $this->fileCallback;
+    }
+
+    /**
      * When processing the filename, call the callback
+     * @param string $filename
+     * @return string
      */
     protected function getFilename($filename)
     {
-        $callback = $this->fileCallback;
+        $callback = $this->getFileCallback();
 
-        if (null === $callback) {
-            return $filename;
+        if (is_callable($callback)) {
+            return $callback($filename);
         }
 
-        return $callback($filename);
+        return $filename;
     }
 }
