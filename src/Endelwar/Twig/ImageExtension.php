@@ -2,6 +2,9 @@
 
 namespace Endelwar\Twig;
 
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
+
 /**
  * Class Twig_Extension_Image
  *
@@ -10,10 +13,10 @@ namespace Endelwar\Twig;
  * @license MIT http://opensource.org/licenses/MIT
  * @link    https://github.com/endelwar/twig-extensions
  */
-class ImageExtension extends \Twig_Extension
+class ImageExtension extends AbstractExtension
 {
-    private $_cache_dir;
-    private $_public_dir;
+    private string $_cache_dir;
+    private string $_public_dir;
 
     /**
      * Constructor
@@ -22,7 +25,7 @@ class ImageExtension extends \Twig_Extension
      * @param string $public_dir public directory
      * @param string $cache_dir cache directory
      */
-    public function __construct($public_dir, $cache_dir = '')
+    public function __construct(string $public_dir, string $cache_dir = '')
     {
         $this->_public_dir = $public_dir;
         $this->_cache_dir = $cache_dir;
@@ -33,15 +36,15 @@ class ImageExtension extends \Twig_Extension
      *
      * @return array
      */
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
-            'image' => new \Twig_SimpleFunction(
+            'image' => new TwigFunction(
                 'image',
                 [$this, 'image'],
                 ['is_safe' => ['html']]
             ),
-            'new_image' => new \Twig_SimpleFunction(
+            'new_image' => new TwigFunction(
                 'new_image',
                 [$this, 'newImage'],
                 ['is_safe' => ['html']]
@@ -56,7 +59,7 @@ class ImageExtension extends \Twig_Extension
      *
      * @return object
      */
-    public function image($file)
+    public function image(string $file)
     {
         return $this->_open($file);
     }
@@ -69,7 +72,7 @@ class ImageExtension extends \Twig_Extension
      *
      * @return object
      */
-    public function newImage($width, $height)
+    public function newImage(int $width, int $height)
     {
         return $this->_create($width, $height);
     }
@@ -81,7 +84,7 @@ class ImageExtension extends \Twig_Extension
      *
      * @return object a manipulable image instance
      */
-    private function _open($file)
+    private function _open(string $file)
     {
         return $this->_createInstance($file);
     }
@@ -103,12 +106,12 @@ class ImageExtension extends \Twig_Extension
      * Creates an instance defining the cache directory
      *
      * @param string $file file to be handled
-     * @param null|int $w image width
-     * @param null|int $h image height
+     * @param int|null $w image width
+     * @param int|null $h image height
      *
      * @return ImageHandler
      */
-    private function _createInstance($file, $w = null, $h = null)
+    private function _createInstance($file, ?int $w = null, ?int $h = null)
     {
         $full_file_path = $this->_public_dir . $file;
         $image = new ImageHandler($full_file_path, $w, $h);

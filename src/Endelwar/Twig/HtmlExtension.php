@@ -2,27 +2,24 @@
 
 namespace Endelwar\Twig;
 
-use Twig_Extension;
-use Twig_Filter;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
 
 /**
- * Class HtmlExtension
- *
- * @package Endelwar\Twig
  * @author  Manuel Dalla Lana <endelwar@aregar.it>
  * @license MIT http://opensource.org/licenses/MIT
  * @link    https://github.com/endelwar/twig-extensions
  */
-class HtmlExtension extends Twig_Extension
+class HtmlExtension extends AbstractExtension
 {
     public function getFilters()
     {
         return array(
-            new Twig_Filter('truncate_html', [$this, 'truncate_html']),
+            new TwigFilter('truncate_html', [$this, 'truncate_html']),
         );
     }
 
-    public function truncate_html($string, $length = 300, $etc = '&hellip;')
+    public function truncate_html($string, $length = 300, $etc = '&hellip;'): string
     {
         $i = 0;
         $tags = [];

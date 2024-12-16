@@ -1,2 +1,4 @@
 /vendor/
 composer.lock
+/tests/Twig/public/cache
+.phpunit.result.cache

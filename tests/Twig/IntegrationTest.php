@@ -1,8 +1,11 @@
 <?php
+namespace EndelWar\Twig\Tests;
 
-class EndelWar_Twig_Tests_IntegrationTest extends Twig_Test_IntegrationTestCase
+use Twig\Test\IntegrationTestCase;
+
+class IntegrationTest extends IntegrationTestCase
 {
-    public function getExtensions()
+    public function getExtensions(): array
     {
         return array(
             new \Endelwar\Twig\ColorExtension(),
@@ -11,7 +14,7 @@ class EndelWar_Twig_Tests_IntegrationTest extends Twig_Test_IntegrationTestCase
         );
     }
 
-    public function getFixturesDir()
+    public static function getFixturesDirectory(): string
     {
         return __DIR__ . '/Fixtures/';
     }

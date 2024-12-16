@@ -2,15 +2,14 @@
 
 namespace Endelwar\Twig;
 
+use Twig\Extension\AbstractExtension;
+
 /**
- * Class Twig_Extension_Color
- *
- * @package Endelwar\Twig
  * @author  Manuel Dalla Lana <endelwar@aregar.it>
  * @license MIT http://opensource.org/licenses/MIT
  * @link    https://github.com/endelwar/twig-extensions
  */
-class ColorExtension extends \Twig_Extension
+class ColorExtension extends AbstractExtension
 {
     /**
      * {@inheritdoc}
@@ -20,7 +19,7 @@ class ColorExtension extends \Twig_Extension
     public function getFunctions()
     {
         return [
-            'ColorLuminance' => new \Twig_SimpleFunction(
+            'ColorLuminance' => new \Twig\TwigFunction(
                 'ColorLuminance',
                 [$this, 'ColorLuminance'],
                 ['is_safe' => ['html']]
@@ -28,7 +27,7 @@ class ColorExtension extends \Twig_Extension
         ];
     }
 
-    public function ColorLuminance($hex, $lum)
+    public function ColorLuminance($hex, $lum): string
     {
         // validate hex string
         $hex = preg_replace('/[^0-9a-f]/i', '', $hex);

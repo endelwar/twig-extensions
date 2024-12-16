@@ -11,17 +11,23 @@
   ],
   "minimum-stability": "stable",
   "require": {
-    "php": "^5.6|^7",
-    "twig/twig": "^1.35|^2.5",
-    "gregwar/image": "^2.0",
-    "ext-mbstring": "*"
+    "php": "^8.1",
+    "ext-mbstring": "*",
+    "twig/twig": "^3.17",
+    "gregwar/image": "^2.1"
   },
   "require-dev": {
-    "symfony/phpunit-bridge": "^3.4|^4.0|^4.1"
+    "roave/security-advisories": "dev-latest",
+    "phpunit/phpunit": "^9.6"
   },
   "autoload": {
     "psr-4": {
       "Endelwar\\Twig\\": "src/Endelwar/Twig"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Endelwar\\Twig\\Tests\\": "tests/Twig"
     }
   }
 }
